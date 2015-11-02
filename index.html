@@ -11,9 +11,7 @@
     <div class='container'></div>
     <script>
       $(document).ready(function(){
-      
         var $con = $('.container');
-
         function getTweets(){
           $con.html('')
           var index = streams.home.length;
@@ -30,17 +28,15 @@
             userTweets(username);
           })
         };
-
         function userTweets(username){
           $con.html('')
           var index = streams.users[username].length -1
-          var i = 0
-          while(i <= index){
-            var tweet = streams.users[username][i];
+          while(index >= 0){
+            var tweet = streams.users[username][index];
             var $tweet = $('<div id="eachtweet"></div>');
               $tweet.text('@' + tweet.user + ': "' + tweet.message + '" tweeted at: ' + tweet.created_at);
               $tweet.appendTo($con);
-            i++
+            index--;
           }  
           $('button').text("Return to Main Page");
         }
@@ -48,7 +44,6 @@
         getTweets();
     
       });
-
     </script>
   </body>
 </html>
